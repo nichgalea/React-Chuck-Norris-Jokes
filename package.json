@@ -1,0 +1,17 @@
+{
+  "name": "react-chuck-norris-jokes",
+  "version": "1.0.0",
+  "description": "A React application for Chuck Norris jokes.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichgalea/React-Chuck-Norris-Jokes.git"
+  },
+  "author": "Nicholas Galea (nich.galea@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nichgalea/React-Chuck-Norris-Jokes/issues"
+  },
+  "homepage": "https://github.com/nichgalea/React-Chuck-Norris-Jokes#readme"
+}
