@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "A React application for Chuck Norris jokes.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "npm start",
+    "start": "webpack-dev-server --config ./webpack.config.ts --display-error-details"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nichgalea/React-Chuck-Norris-Jokes.git"
@@ -13,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/nichgalea/React-Chuck-Norris-Jokes/issues"
   },
-  "homepage": "https://github.com/nichgalea/React-Chuck-Norris-Jokes#readme"
+  "homepage": "https://github.com/nichgalea/React-Chuck-Norris-Jokes#readme",
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/webpack": "^4.4.27",
+    "@types/webpack-dev-server": "^3.1.5",
+    "awesome-typescript-loader": "^5.2.1",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  }
 }
