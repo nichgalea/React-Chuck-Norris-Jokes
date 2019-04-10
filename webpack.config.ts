@@ -24,7 +24,8 @@ const config: Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Chuck Norris Jokes"
+      favicon: `${__dirname}/favicon.png`,
+      template: `${basePath}/index.html`
     })
   ]
 };

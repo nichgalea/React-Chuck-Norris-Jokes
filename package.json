@@ -19,6 +19,8 @@
   "homepage": "https://github.com/nichgalea/React-Chuck-Norris-Jokes#readme",
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.0",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.3",
     "@types/webpack": "^4.4.27",
     "@types/webpack-dev-server": "^3.1.5",
     "awesome-typescript-loader": "^5.2.1",
@@ -28,5 +30,9 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
