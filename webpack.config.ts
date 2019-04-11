@@ -9,7 +9,11 @@ const config: Configuration = {
   target: "web",
   entry: `${basePath}/index.tsx`,
   mode: "development",
-  resolve: { plugins: [new TsConfigPathsPlugin()] },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", "jsx"],
+    mainFiles: ["index"],
+    plugins: [new TsConfigPathsPlugin()]
+  },
   module: {
     rules: [
       {
