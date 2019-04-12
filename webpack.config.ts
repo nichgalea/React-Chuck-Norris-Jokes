@@ -10,7 +10,7 @@ const config: Configuration = {
   entry: `${basePath}/index.tsx`,
   mode: "development",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", "jsx"],
+    extensions: [".ts", ".tsx", ".js", "jsx", ".scss"],
     mainFiles: ["index"],
     plugins: [new TsConfigPathsPlugin()]
   },
@@ -22,7 +22,17 @@ const config: Configuration = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              camelCase: "dashes"
+            }
+          },
+          "sass-loader"
+        ]
       }
     ]
   },

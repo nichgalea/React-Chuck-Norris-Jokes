@@ -1,0 +1,31 @@
+.fetch-jokes-button {
+  display: block;
+  padding: 16px;
+  background: lightgreen;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    background: darken(lightgreen, 5%);
+  }
+}
+
+.auto-fave {
+  display: block;
+  margin: 16px 8px;
+  user-select: none;
+  text-align: center;
+
+  label,
+  input {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
