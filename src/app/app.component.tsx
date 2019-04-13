@@ -73,8 +73,8 @@ export default class App extends Component<Props, State> {
 
           <div className={styles.autoFave}>
             <label htmlFor="auto-fave">
-              <input type="checkbox" id="auto-fave" />I don't what I like, please pick a favourite for me every five
-              seconds.
+              <input type="checkbox" id="auto-fave" />I don't know what I like, please pick a random favourite for me
+              every five seconds.
             </label>
           </div>
 
