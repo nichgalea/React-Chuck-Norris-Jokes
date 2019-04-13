@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Joke as JokeModel } from "models";
+import Joke from "joke";
 
 import styles from "./styles.scss";
-import Joke from "./joke";
 
 interface Props {
   jokes: JokeModel[];
