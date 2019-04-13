@@ -8,6 +8,7 @@ import JokeComponent from "./joke.component";
 
 interface StateProps {
   isFavourite: boolean;
+  favouriteCount: number;
 }
 
 interface DispatchProps {
@@ -21,6 +22,7 @@ interface OwnProps {
 
 export default connect<StateProps, DispatchProps, OwnProps, RootState>(
   (state, ownProps) => ({
+    favouriteCount: state.favourites.length,
     isFavourite: state.favourites.some(j => j.id == ownProps.joke.id)
   }),
   { addFavourite, removeFavourite }

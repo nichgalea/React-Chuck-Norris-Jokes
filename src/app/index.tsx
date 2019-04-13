@@ -33,9 +33,10 @@ export default class App extends Component<{}, State> {
           <h4>Instructions:</h4>
 
           <ul>
-            <li>Press the button to either fetch 10 random jokes</li>
-            <li>Add a joke to your favourites by clicking it</li>
+            <li>Press the button to fetch 10 random jokes</li>
+            <li>Add/Remove a joke to your favourites by clicking it</li>
             <li>You can also have a random joke added to your favourites every 5 seconds</li>
+            <li>You can only have 10 favourite jokes at a time</li>
           </ul>
 
           <button className={styles.fetchJokesButton} onClick={this.fetch10RandomJokes}>

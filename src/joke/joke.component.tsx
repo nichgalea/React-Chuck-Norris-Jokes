@@ -8,16 +8,31 @@ import styles from "./styles.scss";
 
 interface Props {
   joke: JokeModel;
+  favouriteCount: number;
   isFavourite: boolean;
   addFavourite(joke: JokeModel): void;
   removeFavourite(joke: JokeModel): void;
 }
 
-export default class Joke extends Component<Props> {
+interface State {
+  shaking: boolean;
+}
+
+export default class Joke extends Component<Props, State> {
+  state = {
+    shaking: false
+  };
+
   constructor(props) {
     super(props);
 
     this.addOrRemoveFavourite = this.addOrRemoveFavourite.bind(this);
+  }
+
+  componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
+    if (this.state.shaking && !prevState.shaking) {
+      setTimeout(() => this.setState({ shaking: false }), 500);
+    }
   }
 
   render() {
@@ -25,7 +40,11 @@ export default class Joke extends Component<Props> {
 
     return (
       <div
-        className={cx(styles.joke, this.props.isFavourite && styles.jokeFavourite)}
+        className={cx(
+          styles.joke,
+          this.props.isFavourite && styles.jokeFavourite,
+          this.state.shaking && styles.jokeCantFave
+        )}
         onClick={this.addOrRemoveFavourite}
       >
         <div className={styles.jokeText}>{unescape(this.props.joke.joke)}</div>
@@ -40,8 +59,10 @@ export default class Joke extends Component<Props> {
   addOrRemoveFavourite() {
     if (this.props.isFavourite) {
       this.props.removeFavourite(this.props.joke);
-    } else {
+    } else if (this.props.favouriteCount < 10) {
       this.props.addFavourite(this.props.joke);
+    } else if (!this.state.shaking) {
+      this.setState({ shaking: true });
     }
   }
 }
