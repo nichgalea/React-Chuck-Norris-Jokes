@@ -5,28 +5,28 @@ export enum FavouritesActionTypes {
   REMOVE = "favourites/remove"
 }
 
-export interface AddJokeAction {
+export interface AddFavouriteAction {
   type: FavouritesActionTypes.ADD;
   payload: Joke;
 }
 
-export function addJoke(joke: Joke): AddJokeAction {
+export function addFavourite(joke: Joke): AddFavouriteAction {
   return {
     type: FavouritesActionTypes.ADD,
     payload: joke
   };
 }
 
-export interface RemoveJokeAction {
+export interface RemoveFavouriteAction {
   type: FavouritesActionTypes.REMOVE;
   payload: Joke;
 }
 
-export function removeJoke(joke: Joke): RemoveJokeAction {
+export function removeFavourite(joke: Joke): RemoveFavouriteAction {
   return {
     type: FavouritesActionTypes.REMOVE,
     payload: joke
   };
 }
 
-export type FavouritesAction = AddJokeAction | RemoveJokeAction;
+export type FavouritesAction = AddFavouriteAction | RemoveFavouriteAction;

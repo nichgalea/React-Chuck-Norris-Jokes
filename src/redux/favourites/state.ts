@@ -1,9 +1,9 @@
 import { Joke } from "models";
 
-export interface JokesState {
+export interface FavouritesState {
   favourites: Joke[];
 }
 
-export const initialJokeState: JokesState = {
+export const initialFavouritesState: FavouritesState = {
   favourites: []
 };
