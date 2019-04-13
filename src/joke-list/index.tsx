@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Joke as JokeModel } from "models";
+
+import styles from "./styles.scss";
 import Joke from "./joke";
 
 interface Props {
@@ -9,9 +11,9 @@ interface Props {
 
 export default function JokeList(props: Props) {
   return (
-    <ul>
+    <ul className={styles.jokeList}>
       {props.jokes.map((j, i) => (
-        <li key={i}>
+        <li className={styles.jokeListItem} key={i}>
           <Joke joke={j} />
         </li>
       ))}
