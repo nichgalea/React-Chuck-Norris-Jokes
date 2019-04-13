@@ -47,11 +47,11 @@ export default class Joke extends Component<Props, State> {
         )}
         onClick={this.addOrRemoveFavourite}
       >
-        <div className={styles.jokeText}>{unescape(this.props.joke.joke)}</div>
-
         <div className={styles.favouriteIcon}>
           <Heart />
         </div>
+
+        <div className={styles.jokeText}>{unescape(this.props.joke.joke)}</div>
       </div>
     );
   }
