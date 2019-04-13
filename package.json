@@ -19,6 +19,7 @@
   "homepage": "https://github.com/nichgalea/React-Chuck-Norris-Jokes#readme",
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.0",
+    "@types/lodash": "^4.14.123",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.3",
     "@types/react-redux": "^7.0.6",
@@ -37,6 +38,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",

@@ -3,3 +3,8 @@ export interface Joke {
   joke: string;
   categories: string[];
 }
+
+export interface ApiResponse<T> {
+  type: string;
+  value: T;
+}

@@ -1,10 +1,16 @@
+import { Joke, ApiResponse } from "models";
+
 class JokeService {
-  getRandomJokes(amount: number): Promise<void> {
-    return fetch(`http://api.icndb.com/jokes/random/${amount}`).then(r => r.json());
+  getRandomJokes(amount: number): Promise<Joke[]> {
+    return fetch(`http://api.icndb.com/jokes/random/${amount}`)
+      .then(r => r.json() as Promise<ApiResponse<Joke[]>>)
+      .then(r => r.value);
   }
 
-  getJoke(id: number): Promise<void> {
-    return fetch(`http://api.icndb.com/jokes/${id}`).then(r => r.json());
+  getJoke(id: number): Promise<Joke> {
+    return fetch(`http://api.icndb.com/jokes/${id}`)
+      .then(r => r.json() as Promise<ApiResponse<Joke>>)
+      .then(r => r.value);
   }
 }
 
