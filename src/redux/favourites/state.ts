@@ -1,9 +1,5 @@
 import { Joke } from "models";
 
-export interface FavouritesState {
-  favourites: Joke[];
-}
+export type FavouritesState = Joke[];
 
-export const initialFavouritesState: FavouritesState = {
-  favourites: []
-};
+export const initialFavouritesState: FavouritesState = [];

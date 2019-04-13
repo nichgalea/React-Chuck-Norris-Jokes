@@ -13,6 +13,7 @@ interface Props {
   addFavourite(joke: Joke): void;
   startAddingFavourites(): void;
   stopAddingFavourites(): void;
+  setLoading(value: boolean): void;
 }
 
 interface State {
@@ -74,7 +75,17 @@ export default class Home extends Component<Props, State> {
   }
 
   fetch10RandomJokes() {
-    jokeService.getRandomJokes(10).then(jokes => this.setState({ jokes }));
+    this.props.setLoading(true);
+    jokeService
+      .getRandomJokes(10)
+      .then(jokes => {
+        setTimeout(() => this.props.setLoading(false), 1000);
+        this.setState({ jokes });
+      })
+      .catch(e => {
+        console.error(e);
+        setTimeout(() => this.props.setLoading(false), 1000);
+      });
   }
 
   handleAutoFavChange(e: ChangeEvent<HTMLInputElement>) {

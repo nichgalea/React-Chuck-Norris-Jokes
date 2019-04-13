@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 import { Joke } from "models";
+import Loading from "loading";
 import Login from "login";
 import Home from "home";
 import Favourites from "favourites";
@@ -12,6 +13,8 @@ import styles from "./styles.scss";
 interface Props {
   favourites: Joke[];
   addFavourite(joke: Joke): void;
+  loading: boolean;
+  setLoading(value: boolean): void;
 }
 
 interface State {
@@ -60,6 +63,8 @@ export default class App extends Component<Props, State> {
 
     return (
       <BrowserRouter>
+        {this.props.loading ? <Loading /> : null}
+
         <header className={styles.header}>
           <h3 className={styles.title}>
             <Link to="/">Chuck Norris Jokes</Link>
@@ -127,18 +132,28 @@ export default class App extends Component<Props, State> {
 
   addRandomJokeToFavourites() {
     if (this.props.favourites.length < 10) {
-      jokeService.getRandomJokes(1).then(jokes => {
-        if (this.props.favourites.length < 10) {
-          // if joke exists in favourites
-          if (this.props.favourites.some(j => j.id === jokes[0].id)) {
-            // try again
-            this.addRandomJokeToFavourites();
-          } else {
-            // otherwise add to favourites
-            this.props.addFavourite(jokes[0]);
+      this.props.setLoading(true);
+
+      jokeService
+        .getRandomJokes(1)
+        .then(jokes => {
+          setTimeout(() => this.props.setLoading(false), 1000);
+
+          if (this.props.favourites.length < 10) {
+            // if joke exists in favourites
+            if (this.props.favourites.some(j => j.id === jokes[0].id)) {
+              // try again
+              this.addRandomJokeToFavourites();
+            } else {
+              // otherwise add to favourites
+              this.props.addFavourite(jokes[0]);
+            }
           }
-        }
-      });
+        })
+        .catch(e => {
+          console.error(e);
+          setTimeout(() => this.props.setLoading(false), 1000);
+        });
     }
   }
 }
