@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { debounce, unescape } from "lodash";
 
 import { Joke } from "models";
+import JokeList from "joke-list";
 import jokeService from "services/joke.service";
 
 import styles from "./styles.scss";
@@ -24,7 +25,7 @@ export default class App extends Component<{}, State> {
   render() {
     return (
       <>
-        <h3>Chuck Norris Jokes</h3>
+        <h3 className={styles.title}>Chuck Norris Jokes</h3>
 
         <h4>Instructions:</h4>
 
@@ -45,11 +46,7 @@ export default class App extends Component<{}, State> {
           </label>
         </div>
 
-        <ul>
-          {this.state.jokes.map(j => (
-            <li key={j.id}>{unescape(j.joke)}</li>
-          ))}
-        </ul>
+        <JokeList jokes={this.state.jokes} />
       </>
     );
   }
