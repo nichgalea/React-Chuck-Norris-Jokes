@@ -6,12 +6,6 @@ class JokeService {
       .then(r => r.json() as Promise<ApiResponse<Joke[]>>)
       .then(r => r.value);
   }
-
-  getJoke(id: number): Promise<Joke> {
-    return fetch(`http://api.icndb.com/jokes/${id}`)
-      .then(r => r.json() as Promise<ApiResponse<Joke>>)
-      .then(r => r.value);
-  }
 }
 
 export default new JokeService();

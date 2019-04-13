@@ -4,28 +4,37 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { Joke } from "models";
 import Home from "home";
 import Favourites from "favourites";
+import jokeService from "services/joke.service";
 
 import styles from "./styles.scss";
 
 interface Props {
   favourites: Joke[];
+  addFavourite(joke: Joke): void;
 }
 
 interface State {
+  autoFav: boolean;
   jokes: Joke[];
   showFavTitle: boolean;
 }
 
 export default class App extends Component<Props, State> {
+  private intervalId?: number;
+
   constructor(props) {
     super(props);
 
     this.state = {
+      autoFav: false,
       jokes: [],
       showFavTitle: window.innerWidth >= 650
     };
 
     this.handleResize = this.handleResize.bind(this);
+    this.startAddingToFavourites = this.startAddingToFavourites.bind(this);
+    this.stopAddingToFavourites = this.stopAddingToFavourites.bind(this);
+    this.addRandomJokeToFavourites = this.addRandomJokeToFavourites.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +43,10 @@ export default class App extends Component<Props, State> {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
+
+    if (this.intervalId) {
+      window.clearInterval(this.intervalId);
+    }
   }
 
   render() {
@@ -62,7 +75,17 @@ export default class App extends Component<Props, State> {
 
         <main className={styles.mainContent}>
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <Home
+                  autoFav={this.state.autoFav}
+                  startAddingFavourites={this.startAddingToFavourites}
+                  stopAddingFavourites={this.stopAddingToFavourites}
+                />
+              )}
+            />
             <Route path="/favourites" component={Favourites} />
           </Switch>
         </main>
@@ -72,5 +95,38 @@ export default class App extends Component<Props, State> {
 
   handleResize() {
     this.setState({ showFavTitle: window.innerWidth >= 650 });
+  }
+
+  startAddingToFavourites() {
+    this.setState({ autoFav: true });
+
+    this.intervalId = window.setInterval(this.addRandomJokeToFavourites, 5000);
+
+    this.addRandomJokeToFavourites();
+  }
+
+  stopAddingToFavourites() {
+    this.setState({ autoFav: false });
+
+    if (this.intervalId) {
+      window.clearInterval(this.intervalId);
+    }
+  }
+
+  addRandomJokeToFavourites() {
+    if (this.props.favourites.length < 10) {
+      jokeService.getRandomJokes(1).then(jokes => {
+        if (this.props.favourites.length < 10) {
+          // if joke exists in favourites
+          if (this.props.favourites.some(j => j.id === jokes[0].id)) {
+            // try again
+            this.addRandomJokeToFavourites();
+          } else {
+            // otherwise add to favourites
+            this.props.addFavourite(jokes[0]);
+          }
+        }
+      });
+    }
   }
 }
