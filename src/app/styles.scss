@@ -11,6 +11,12 @@
   margin: 25px 0;
   text-align: center;
   letter-spacing: 2px;
+
+  a,
+  a:visited {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .favourites {
@@ -23,6 +29,7 @@
   position: absolute;
   right: 28px;
   top: 2px;
+  color: white;
 }
 
 .favourite-count {
@@ -38,37 +45,4 @@
 
 .main-content {
   margin-top: 93px;
-}
-
-.fetch-jokes-button {
-  display: block;
-  padding: 16px;
-  background: #3a87ad;
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  margin: 0 auto;
-  font-size: 16px;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background: darken(#3a87ad, 5%);
-  }
-}
-
-.auto-fave {
-  display: block;
-  margin: 16px 8px;
-  user-select: none;
-  text-align: center;
-
-  label,
-  input {
-    &:hover {
-      cursor: pointer;
-    }
-  }
 }

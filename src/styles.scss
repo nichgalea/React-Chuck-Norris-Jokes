@@ -10,3 +10,11 @@ body {
 *:focus {
   outline: none !important;
 }
+
+a {
+  color: #ff5e5e;
+
+  &:visited {
+    color: #ff5e5e;
+  }
+}
