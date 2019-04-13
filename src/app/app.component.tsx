@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 import { Joke } from "models";
+import Login from "login";
 import Home from "home";
 import Favourites from "favourites";
 import jokeService from "services/joke.service";
@@ -17,24 +18,27 @@ interface State {
   autoFav: boolean;
   jokes: Joke[];
   showFavTitle: boolean;
+  isLoggedIn: boolean;
 }
 
 export default class App extends Component<Props, State> {
   private intervalId?: number;
 
+  state = {
+    autoFav: false,
+    jokes: [],
+    showFavTitle: window.innerWidth >= 650,
+    isLoggedIn: false
+  };
+
   constructor(props) {
     super(props);
-
-    this.state = {
-      autoFav: false,
-      jokes: [],
-      showFavTitle: window.innerWidth >= 650
-    };
 
     this.handleResize = this.handleResize.bind(this);
     this.startAddingToFavourites = this.startAddingToFavourites.bind(this);
     this.stopAddingToFavourites = this.stopAddingToFavourites.bind(this);
     this.addRandomJokeToFavourites = this.addRandomJokeToFavourites.bind(this);
+    this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +54,10 @@ export default class App extends Component<Props, State> {
   }
 
   render() {
+    if (!this.state.isLoggedIn) {
+      return <Login onLoginSuccess={this.handleLoginSuccess} />;
+    }
+
     return (
       <BrowserRouter>
         <header className={styles.header}>
@@ -91,6 +99,10 @@ export default class App extends Component<Props, State> {
         </main>
       </BrowserRouter>
     );
+  }
+
+  handleLoginSuccess() {
+    this.setState({ isLoggedIn: true });
   }
 
   handleResize() {
