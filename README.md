@@ -2,14 +2,12 @@
 
 After running `npm i` the app should automatically run and launch on http://localhost:9000
 
-Passwords:</p>
+You'll need to login in order to get access to the joke application. You'll only need to enter text that matches the following criteria:
 
-<ul>
-  <li>Cannot be longer than 32 characters.</li>
-  <li>Can only contain lower case alphabetic characters.</li>
-  <li>Must include one increasing straight of at least three letters (e.g. "mno")</li>
-  <li>May not contain the letters "i", "O", or "l"</li>
-  <li>Must contain at least two non-overlapping pairs of letters (e.g. "aa")</li>
-</ul>
+- Cannot be longer than 32 characters
+- Can only contain lower case alphabetic characters
+- Must include one increasing straight of at least three letters (e.g. "mno")
+- May not contain the letters "i", "O", or "l"
+- Must contain at least two non-overlapping pairs of letters (e.g. "aa")
 
-Example of a valid password is `abcddee`
+An example of a valid password is `abcddee`
