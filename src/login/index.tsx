@@ -139,7 +139,7 @@ export default class Login extends Component<Props, State> {
   }
 
   containsTwoNonOverlappingPairs(value: string): boolean {
-    const startingIndexes: number[] = [];
+    let firstPairStartingIndex: number | null = null;
     const end = value.length - 1;
 
     for (let i = 0; i < end; i++) {
@@ -147,19 +147,17 @@ export default class Login extends Component<Props, State> {
       const next = value[i + 1];
 
       if (current === next) {
-        if (startingIndexes.length === 0) {
-          startingIndexes.push(i);
+        if (firstPairStartingIndex === null) {
+          firstPairStartingIndex = i;
           continue; // continue finding the next one
         }
 
-        const firstPairOverlapsThisPair = startingIndexes[0] + 1 === i;
+        const firstPairOverlapsThisPair = firstPairStartingIndex! + 1 === i;
 
         if (!firstPairOverlapsThisPair) {
-          startingIndexes.push(i);
+          return true;
         }
       }
-
-      if (startingIndexes.length === 2) return true;
     }
 
     return false;
