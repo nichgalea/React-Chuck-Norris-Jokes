@@ -57,10 +57,6 @@ export default class App extends Component<Props, State> {
   }
 
   render() {
-    if (!this.state.isLoggedIn) {
-      return <Login onLoginSuccess={this.handleLoginSuccess} />;
-    }
-
     return (
       <BrowserRouter>
         {this.props.loading ? <Loading /> : null}

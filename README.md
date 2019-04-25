@@ -2,12 +2,6 @@
 
 After running `npm i` the app should automatically run and launch on http://localhost:9000
 
-You'll need to login in order to get access to the joke application. You'll only need to enter text that matches the following criteria:
+This loads 10 random Chuck Norris jokes from the API http://icndb.com/. You're can choose up to 10 favourites, and they will be saved in browser local storage.
 
-- Cannot be longer than 32 characters
-- Can only contain lower case alphabetic characters
-- Must include one increasing straight of at least three letters (e.g. "mno")
-- May not contain the letters "i", "O", or "l"
-- Must contain at least two non-overlapping pairs of letters (e.g. "aa")
-
-An example of a valid password is `abcddee`
+A checkbox can be checked to add a random joke to favourites every 5 seconds. However, the favourite limit will be capped at 10.
