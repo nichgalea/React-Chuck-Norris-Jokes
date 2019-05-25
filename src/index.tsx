@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
-import { Joke } from "./models";
-
 import createStore from "./redux/store";
 import App from "./app";
 import "./styles.scss";

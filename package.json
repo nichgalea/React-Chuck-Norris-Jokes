@@ -4,7 +4,7 @@
   "description": "A React application for Chuck Norris jokes.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm start",
+    "pohstinstall": "npm start",
     "start": "webpack-dev-server --config ./webpack.config.ts --display-error-details --open"
   },
   "repository": {
@@ -38,7 +38,8 @@
     "typescript": "^3.4.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "tar": ">=2.2.2"
   },
   "dependencies": {
     "classnames": "^2.2.6",
